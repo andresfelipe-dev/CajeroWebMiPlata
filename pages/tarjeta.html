@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Mi Plata | Tarjeta</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container navbar"><a class="logo" href="dashboard.html">MI <span>PLATA</span></a><a
+                class="btn btn-outline" href="dashboard.html">Volver al panel</a></div>
+    </header>
+    <main class="dashboard">
+        <div class="container">
+            <div class="page-title">
+                <div class="breadcrumb">Panel / Tarjeta de crédito</div>
+                <h1>Tarjeta de crédito</h1>
+            </div>
+            <div class="two-column">
+                <section class="card"
+                    style="background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));color:white">
+                    <div style="font-size:.9rem;opacity:.8">MI PLATA</div>
+                    <h2 style="margin:45px 0 20px">•••• •••• •••• 4582</h2>
+                    <div style="display:flex;justify-content:space-between"><span>ANDRÉS FELIPE</span><span>VISA</span>
+                    </div>
+                </section>
+                <section class="card">
+                    <h3>Cupo disponible</h3>
+                    <div class="balance" style="color:var(--azul-oscuro)">$ 3.000.000</div>
+                    <p>Gestiona una compra y consulta el pago mensual según el número de cuotas.</p>
+                    <form style="margin-top:20px">
+                        <div class="form-group"><label>Valor de compra</label><input type="number" min="1"></div>
+                        <div class="form-group"><label>Número de cuotas</label><select>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>12</option>
+                            </select></div><button class="btn btn-primary btn-full">Calcular pago mensual</button>
+                    </form>
+                </section>
+            </div>
+            <div class="card" style="margin-top:24px">
+                <h3>Reglas de cuotas</h3>
+                <ul class="feature-list">
+                    <li>Hasta 2 cuotas: 0% mensual</li>
+                    <li>3 a 6 cuotas: 1.9% mensual</li>
+                    <li>7 o más cuotas: 2.3% mensual</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
