@@ -41,8 +41,10 @@ movimientos.forEach(function (movimiento) {
         claseTipo = "badge-success";
     } else if (movimiento.tipo === "Retiro") {
         claseTipo = "badge-danger";
-    } else if (movimiento.tipo === "Transferencia") {
+    } else if (movimiento.tipo === "Transferencia enviada") {
         claseTipo = "badge-warning";
+    } else if(movimiento.tipo === "Transferencia recibida") {
+        claseTipo = "badge-notification"
     }
 
     const fila = document.createElement("tr");
