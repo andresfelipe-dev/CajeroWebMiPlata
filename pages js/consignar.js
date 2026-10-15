@@ -29,8 +29,13 @@ btnRealizarConsignacion.addEventListener('click', function(){
     }
 
     cuentaElegida.saldo = Number(cuentaElegida.saldo) + monto;
+    cuentaElegida.movimientos.push({
+        fecha: new Date().toISOString(),
+        tipo: "Consignación",
+        valor: monto
+    })
     localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
     alert(`Consignación exitosa de:  $${monto.toLocaleString("es-CO")}
-    Tipo de cuenta de la consignación: ${tipoCuenta}`)
+Tipo de cuenta de la consignación: ${tipoCuenta}`)
     montoConsignar.value = "";
 })
