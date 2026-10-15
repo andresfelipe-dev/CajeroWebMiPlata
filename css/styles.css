@@ -522,6 +522,11 @@ th {
   color: var(--amarillo)
 }
 
+.badge-notification {
+  background-color: #cde3ff;
+  color: var(--azul-claro);
+}
+
 .two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
