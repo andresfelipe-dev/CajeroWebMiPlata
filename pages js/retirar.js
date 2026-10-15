@@ -43,11 +43,31 @@ formRetirar.addEventListener("submit", function (event) {
         const saldoMaximoRetirable = saldoActual + limiteSobregiro;
 
         if (monto > saldoMaximoRetirable) {
+            montoRetirar.value = ""
             alert("Fondos insuficientes. Superas el saldo disponible y el límite de sobregiro.");
+            return;
+        } else if(monto < 100){
+            alert("Por favor ingrese un valor mayor a $100.")
             return;
         }
 
-        console.log("El retiro está permitido.");
+        cuentaCorriente.setSaldo(saldoActual - monto)
+
+        cuentaElegida.saldo = cuentaCorriente.getSaldo()
+
+        cuentaElegida.movimientos.push({
+            fecha: new Date().toISOString(),
+            tipo: "Retiro",
+            valor: monto
+        })
+        localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
+
+        alert(`Retiro exitoso: $${monto.toLocaleString("es-CO")}
+Tipo de cuenta: Corriente
+Sobregiro permitido: $${limiteSobregiro.toLocaleString("es-CO")}
+Saldo actual: $${cuentaCorriente.getSaldo().toLocaleString("es-CO")}`);
+
+        montoRetirar.value = "";
     }
 
     if (tipoCuenta === "ahorros") {
@@ -56,13 +76,32 @@ formRetirar.addEventListener("submit", function (event) {
             saldoActual
         );
 
+        if(monto > saldoActual){
+            montoRetirar.value = ""
+            alert("Fondos insuficientes. Superas el saldo disponible.");
+            return;
+        } else if(monto < 100){
+            alert("Por favor ingrese un valor mayor a $100.")
+            return;
+        }
+
         const intereses = cuentaAhorros.retiroIntereses();
 
-        console.log("Intereses ganados:", intereses);
-        console.log("Saldo con intereses:", cuentaAhorros.getSaldo());
+        cuentaAhorros.setSaldo(cuentaAhorros.getSaldo() - monto)
+
+        cuentaElegida.saldo = cuentaAhorros.getSaldo()
+
+        cuentaElegida.movimientos.push({
+            fecha: new Date().toISOString(),
+        tipo: "Retiro",
+        valor: monto
+        })
+        localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
+    alert(`Retiro exitoso: $${monto.toLocaleString("es-CO")}
+Tipo de cuenta: ${tipoCuenta}
+Intereses generados: $${intereses.toLocaleString("es-CO")}
+Saldo actual: $${cuentaAhorros.getSaldo().toLocaleString("es-CO")}`);
+
+        montoRetirar.value = "";
     }
-
-
-
-
 })

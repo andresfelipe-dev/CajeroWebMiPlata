@@ -16,8 +16,6 @@ class CuentaAhorros extends Cuenta {
 
         return intereses;
     }
-
-
 }
 export default CuentaAhorros;
 
