@@ -2,16 +2,17 @@
 
 import Cuenta from "./Cuenta.Js";
 
-class CuentaCorriente extends Cuenta{
+class CuentaCorriente extends Cuenta {
 
     //Constructor
-    constructor(numeroCuenta, saldo){
+    constructor(numeroCuenta, saldo) {
         super(numeroCuenta, saldo)
     }
 
     //Metodos
-    calcularSobreGiro(){
-
+    calcularSobreGiro() {
+        return this.getSaldo() * 0.20;
     }
-} 
+
+}
 export default CuentaCorriente

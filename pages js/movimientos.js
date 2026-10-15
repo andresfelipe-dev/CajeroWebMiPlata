@@ -8,32 +8,55 @@ if (!usuarioActivo || !clienteActual) {
 }
 const listaMovimientos = document.getElementById("listaMovimientos")
 
+
+// Reunir los movimientos de todas las cuentas en un solo arreglo
+const movimientos = [];
+
 clienteActual.cuentas.forEach(function (cuenta) {
     cuenta.movimientos.forEach(function (movimiento) {
-        console.log(movimiento.fecha);
-        const producto = cuenta.tipo === "ahorros" ? "Ahorros" : "Corriente";
+        movimientos.push({
+            ...movimiento,
+            producto: cuenta.tipo
+        });
+    });
+});
 
-        let claseTipo = "";
+// Ordenar del movimiento más reciente al más antiguo
+movimientos.sort(function (a, b) {
+    return new Date(b.fecha) - new Date(a.fecha);
+});
 
-        //Esto es únicamente para conservar los estilos del archivo css y se aplica solo a el tipo de movimiento
-        if (movimiento.tipo === "Consignación") {
-            claseTipo = "badge-success";
-        } else if (movimiento.tipo === "Retiro") {
-            claseTipo = "badge-danger";
-        } else if (movimiento.tipo === "Transferencia") {
-            claseTipo = "badge-warning";
-        }
+// Mostrar los movimientos ordenados en la tabla
+movimientos.forEach(function (movimiento) {
+    console.log(movimiento.fecha);
 
-        const fila = document.createElement("tr");
-        
-        fila.innerHTML = `
+    const producto = movimiento.producto === "ahorros"
+        ? "Ahorros"
+        : "Corriente";
+
+    let claseTipo = "";
+
+    //Esto es únicamente para conservar los estilos del archivo css y se aplica solo a el tipo de movimiento
+    if (movimiento.tipo === "Consignación") {
+        claseTipo = "badge-success";
+    } else if (movimiento.tipo === "Retiro") {
+        claseTipo = "badge-danger";
+    } else if (movimiento.tipo === "Transferencia") {
+        claseTipo = "badge-warning";
+    }
+
+    const fila = document.createElement("tr");
+
+    fila.innerHTML = `
         <td>${new Date(movimiento.fecha).toLocaleString("es-CO", {
             timeZone: "America/Bogota"
         })}</td>
         <td><span class="badge ${claseTipo}">${movimiento.tipo}</span></td>
         <td>${producto}</td>
-        <td>$ ${Number(movimiento.valor).toLocaleString("es-CO")}</td>`;
-        listaMovimientos.appendChild(fila)
-    })
-})
+        <td>$ ${Number(movimiento.valor).toLocaleString("es-CO")}</td>
+    `;
+
+    listaMovimientos.appendChild(fila);
+});
+
 

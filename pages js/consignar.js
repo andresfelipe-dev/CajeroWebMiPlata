@@ -11,7 +11,9 @@ if(!usuarioActivo || !clienteActual){
     window.location.href = "login.html"
 }
 
-btnRealizarConsignacion.addEventListener('click', function(){
+btnRealizarConsignacion.addEventListener('click', function(event){
+    event.preventDefault();
+
     const tipoCuenta = cuentaSeleccionada.value
     const monto = Number(montoConsignar.value)
     const cuentaElegida = clienteActual.cuentas.find(function(cuenta){
