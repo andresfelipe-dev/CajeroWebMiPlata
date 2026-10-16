@@ -1,6 +1,7 @@
 import Cliente from "../src/Cliente.js"
 import CuentaAhorros from "../src/CuentaAhorros.js";
 import CuentaCorriente from "../src/CuentaCorriente.js";
+import TarjetaCredito from "../src/TarjetaCredito.js";
 
 const formRegistro = document.getElementById("formRegistro")
 
@@ -64,6 +65,12 @@ formRegistro.addEventListener("submit", function (event) {
             0
         );
 
+        const numeroTarjetaCredito = generarNumeroCuenta("7")
+        const tarjetaCredito = new TarjetaCredito(
+            numeroTarjetaCredito,
+            3000000
+        )
+
         const datosGuardar = {
             id: cliente.getNumeroIdentificacion(),
             nombre: cliente.getNombreCompleto(),
@@ -85,7 +92,14 @@ formRegistro.addEventListener("submit", function (event) {
                     saldo: cuentaCorriente.getSaldo(),
                     movimientos: []
                 }
-            ]
+            ],
+            tarjetaCredito: {
+                numeroTarjeta: tarjetaCredito.getNumeroTarjeta(),
+                cupoTotal: tarjetaCredito.getCupoTotal(),
+                cupoDisponible: tarjetaCredito.getCupoDisponible(),
+                deudaActual: tarjetaCredito.getDeudaActual(),
+                compras: []
+            }
         }
         listaUsuarios.push(datosGuardar)
         localStorage.setItem("usuarios", JSON.stringify(listaUsuarios))
