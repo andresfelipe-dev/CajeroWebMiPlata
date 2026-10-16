@@ -22,28 +22,64 @@
             <div class="two-column">
                 <section class="card">
                     <h3>Datos personales</h3>
-                    <form>
-                        <div class="form-group"><label>Identificación</label><input value="123456789" disabled></div>
-                        <div class="form-group"><label>Nombre completo</label><input
-                                value="Andrés Felipe Alzate Grajales"></div>
-                        <div class="form-group"><label>Celular</label><input value="3000000000"></div>
-                        <div class="form-group"><label>Usuario</label><input value="andres" disabled></div><button
-                            class="btn btn-primary">Guardar cambios</button>
+                    <form id="formPerfil">
+                        <div class="form-group">
+                            <label for="identificacion">Identificación</label>
+                            <input type="text" id="identificacion" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombreCompleto">Nombre completo</label>
+                            <input type="text" id="nombreCompleto" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="celular">Celular</label>
+                            <input type="tel" id="celular" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombreUsuario">Usuario</label>
+                            <input type="text" id="nombreUsuario" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Guardar cambios
+                        </button>
                     </form>
                 </section>
                 <section class="card">
                     <h3>Cambiar contraseña</h3>
-                    <form>
-                        <div class="form-group"><label>Usuario</label><input></div>
-                        <div class="form-group"><label>Contraseña actual</label><input type="password"></div>
-                        <div class="form-group"><label>Nueva contraseña</label><input type="password"></div>
-                        <div class="form-group"><label>Confirmar nueva contraseña</label><input type="password"></div>
-                        <button class="btn btn-primary">Cambiar contraseña</button>
+                    <form id="formContrasenia">
+                        <div class="form-group">
+                            <label for="usuarioContrasenia">Usuario</label>
+                            <input type="text" id="usuarioContrasenia" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contraseniaActual">Contraseña actual</label>
+                            <input type="password" id="contraseniaActual" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nuevaContrasenia">Nueva contraseña</label>
+                            <input type="password" id="nuevaContrasenia" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmarContrasenia">Confirmar nueva contraseña</label>
+                            <input type="password" id="confirmarContrasenia" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Cambiar contraseña
+                        </button>
                     </form>
                 </section>
             </div>
         </div>
     </main>
+    <script type="module" src="../pages js/perfil.js"></script>
 </body>
 
 </html>
