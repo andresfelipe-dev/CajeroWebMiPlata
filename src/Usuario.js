@@ -1,5 +1,5 @@
 //Creacion de clase abstracta Usuario
-export default class Usuario{
+export default class Usuario {
     #numeroIdentificacion;
     #nombreCompleto;
     #numeroCelular;
@@ -7,7 +7,7 @@ export default class Usuario{
     #contrasenia;
 
     //Constructor
-    constructor(numeroIdentificacion, nombreCompleto, numeroCelular, nombreUsuario, contrasenia){
+    constructor(numeroIdentificacion, nombreCompleto, numeroCelular, nombreUsuario, contrasenia) {
         if (this.constructor === Usuario) {
             throw new Error("No se puede instanciar la clase abstracta Usuario");
         }
@@ -16,43 +16,47 @@ export default class Usuario{
         this.#numeroCelular = numeroCelular;
         this.#nombreUsuario = nombreUsuario;
         this.#contrasenia = contrasenia;
-    } 
+    }
 
     //Getter
-    getNumeroIdentificacion(){
+    getNumeroIdentificacion() {
         return this.#numeroIdentificacion;
     }
-    
-    getNombreCompleto(){
+
+    getNombreCompleto() {
         return this.#nombreCompleto;
     }
 
-    getNumeroCelular(){
+    getNumeroCelular() {
         return this.#numeroCelular;
     }
 
-    getNombreUsuario(){
+    getNombreUsuario() {
         return this.#nombreUsuario;
     }
 
-    getContrasenia(){
+    getContrasenia() {
         return this.#contrasenia;
     }
 
     //Setter
-    setNumeroIdentificacion(numeroIdentificacion){
+    setNumeroIdentificacion(numeroIdentificacion) {
         this.#numeroIdentificacion = numeroIdentificacion;
     }
 
-    setNombreCompleto(nombreCompleto){
+    setNombreCompleto(nombreCompleto) {
         this.#nombreCompleto = nombreCompleto;
     }
 
-    setNumeroCelular(numeroCelular){
+    setNumeroCelular(numeroCelular) {
         this.#numeroCelular = numeroCelular;
     }
 
-    setContrasenia(contrasenia){
+    setNombreUsuario(nombreUsuario) {
+        this.#nombreUsuario = nombreUsuario;
+    }
+
+    setContrasenia(contrasenia) {
         this.#contrasenia = contrasenia;
     }
 
