@@ -1,4 +1,9 @@
-const usuarioActivo = sessionStorage.getItem("usuarioActivo")
+const tipoUsuarioActivo = sessionStorage.getItem("tipoUsuarioActivo");
+const usuarioActivo = sessionStorage.getItem("usuarioActivo");
+
+if (tipoUsuarioActivo !== "cliente" || !usuarioActivo) {
+    window.location.href = "login.html";
+}
 const botonesCerrarSesion  = document.querySelectorAll(".cerrarSesion")
 const nombreDashboard = document.getElementById("nombreDashboard")
 
