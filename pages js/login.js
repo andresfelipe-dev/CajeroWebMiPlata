@@ -4,6 +4,8 @@ const usuario = document.getElementById("usuario");
 const clave = document.getElementById("clave")
 const intentos = document.getElementById("intentos")
 const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+//Para identificar el admin al momento de iniciar sesión
+const administrador = JSON.parse(localStorage.getItem("administrador"));
 
 function actualizarIntentos(cliente) {
     if (!cliente) {
@@ -24,6 +26,19 @@ formLogin.addEventListener("submit", function (event) {
     const usuarioEncontrado = listaUsuarios.find(function (cliente) {
         return cliente.usuario === usuario.value;
     })
+
+    if (
+        administrador &&
+        usuario.value === administrador.usuario &&
+        clave.value === administrador.clave
+    ) {
+        // Crear la sesión del administrador
+        sessionStorage.setItem("tipoUsuarioActivo", "administrador");
+
+        // Redirigir al panel administrativo
+        window.location.href = "admin.html";
+        return;
+    }
 
     // 2. Comprobar si el usuario existe 
     if (!usuarioEncontrado) {
@@ -57,12 +72,10 @@ Tiempo restante aproximado: ${horasRestantes} horas y ${minutos} minutos.`);
 Bienvenid@ ${usuarioEncontrado.nombre}`);
         // Restaurar los intentos después del acceso correcto
         usuarioEncontrado.intentos = 3;
-        localStorage.setItem(
-            "usuarios",
-            JSON.stringify(listaUsuarios)
-        );
+        localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
         actualizarIntentos(usuarioEncontrado);
         sessionStorage.setItem("usuarioActivo", usuarioEncontrado.usuario);
+        sessionStorage.setItem("tipoUsuarioActivo", "cliente");
        window.location.href = "dashboard.html";
     } else {
         // 5. Descontar un intento por contraseña incorrecta
@@ -86,4 +99,3 @@ actualizarIntentos(usuarioEncontrado)
         );
     }
 });
-
