@@ -3,24 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Movimientos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container navbar"><a class="logo" href="dashboard.html">MI <span>PLATA</span></a><a
-                class="btn btn-outline" href="dashboard.html">Volver al panel</a></div>
+        <div class="container navbar">
+            <a class="logo" href="dashboard.html">MI <span>PLATA</span></a>
+            <a class="btn btn-outline" href="dashboard.html">Volver al panel</a>
+        </div>
     </header>
     <main class="dashboard">
         <div class="container">
             <div class="page-title">
                 <div class="breadcrumb">Panel / Movimientos</div>
                 <h1>Historial de movimientos</h1>
+                <p>Tus operaciones, de la más reciente a la más antigua.</p>
             </div>
+
             <div class="table-wrap">
-                <table>
+                <table class="tabla-numerica">
                     <thead>
                         <tr>
                             <th>Fecha y hora</th>
@@ -29,9 +36,7 @@
                             <th>Valor</th>
                         </tr>
                     </thead>
-                    <tbody id="listaMovimientos">
-                        
-                    </tbody>
+                    <tbody id="listaMovimientos"></tbody>
                 </table>
             </div>
         </div>

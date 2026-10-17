@@ -5,89 +5,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container navbar"><a class="logo" href="index.html">MI <span>PLATA</span></a>
+        <div class="container navbar">
+            <a class="logo" href="index.html">MI <span>PLATA</span></a>
+            <input class="menu-toggle" type="checkbox" id="menuToggle" aria-label="Abrir o cerrar el menú">
+
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html" aria-current="page">Inicio</a></li>
                     <li><a href="index.html#nosotros">Nosotros</a></li>
                     <li><a href="productos.html">Productos</a></li>
                     <li><a href="index.html#tarjetas">Tarjetas</a></li>
+                    <li class="menu-only"><a href="login.html">Iniciar sesión</a></li>
                 </ul>
             </nav>
-            <div class="nav-actions"><a class="btn btn-outline" href="login.html">Iniciar sesión</a><a
-                    class="btn btn-primary" href="registro.html">Registrarse</a></div>
+
+            <div class="nav-actions">
+                <a class="btn btn-outline" href="login.html">Iniciar sesión</a>
+                <a class="btn btn-primary" href="registro.html">Registrarse</a>
+            </div>
+            <label class="menu-button" for="menuToggle"><span class="sr-only">Menú</span></label>
         </div>
     </header>
     <main>
         <section class="hero">
             <div class="container hero-grid">
                 <div>
-                    <h1>Tu dinero, tus productos, <span style="color:#61B4FF">Mi Plata.</span></h1>
-                    <p>Una experiencia bancaria web para gestionar cuentas de ahorros, cuenta corriente y tarjeta de
-                        crédito desde un solo lugar.</p>
-                    <div class="hero-actions"><a class="btn btn-primary" href="login.html">Iniciar sesión</a><a
-                            class="btn btn-outline" href="registro.html">Crear cuenta</a></div>
+                    <h1>Tu dinero, tus productos, Mi Plata.</h1>
+                    <p>Gestiona tu cuenta de ahorros, tu cuenta corriente y tu tarjeta de crédito desde un solo lugar,
+                        cuando quieras y desde cualquier dispositivo.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="login.html">Iniciar sesión</a>
+                        <a class="btn btn-outline" href="registro.html">Crear cuenta</a>
+                    </div>
+                    <ul class="hero-points">
+                        <li><span class="icon icon-shield" aria-hidden="true"></span> Acceso protegido</li>
+                        <li><span class="icon icon-phone" aria-hidden="true"></span> Disponible en cualquier dispositivo</li>
+                    </ul>
                 </div>
-                <div class="hero-card">
-                    <h3>Tu experiencia bancaria</h3>
-                    <div class="stat"><span>Cuenta de ahorros</span><strong>1.5% mensual</strong></div>
-                    <div class="stat"><span>Cuenta corriente</span><strong>20% sobregiro</strong></div>
-                    <div class="stat"><span>Tarjeta de crédito</span><strong>Cuotas flexibles</strong></div>
+                <div class="hero-card" aria-hidden="true">
+                    <div class="bank-card">
+                        <div class="bank-card-top"><span>MI PLATA</span><span class="icon icon-card" aria-hidden="true"></span></div>
+                        <div class="bank-card-chip"></div>
+                        <div class="bank-card-number">•••• •••• •••• 4821</div>
+                        <div class="bank-card-bottom"><span>Tarjeta de crédito</span><span>VISA</span></div>
+                    </div>
+                    <div class="float-chip float-chip-1">
+                        <span class="float-chip-icon"><span class="icon icon-trend" aria-hidden="true"></span></span>
+                        <span><small>Cuenta de ahorros</small><strong>1.5% mensual</strong></span>
+                    </div>
+                    <div class="float-chip float-chip-2">
+                        <span class="float-chip-icon"><span class="icon icon-bank" aria-hidden="true"></span></span>
+                        <span><small>Cuenta corriente</small><strong>Sobregiro hasta 20%</strong></span>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="section" id="nosotros">
+
+        <section class="section section-alt" id="nosotros">
             <div class="container">
-                <h2 class="section-title">Conoce Mi Plata</h2>
-                <p class="section-subtitle">Sistema bancario web orientado a la gestión de productos financieros y
-                    operaciones bancarias.</p>
+                <h2 class="section-title">Por qué elegir Mi Plata</h2>
+                <p class="section-subtitle">Una forma simple y segura de manejar tu dinero todos los días.</p>
                 <div class="grid-3">
                     <article class="card">
-                        <div class="product-icon">🔐</div>
-                        <h3>Acceso controlado</h3>
-                        <p>Registro e inicio de sesión con validación de credenciales.</p>
+                        <div class="product-icon"><span class="icon icon-shield" aria-hidden="true"></span></div>
+                        <h3>Tu acceso, protegido</h3>
+                        <p>Ingresa con tu usuario y contraseña personales para que solo tú veas tu información.</p>
                     </article>
                     <article class="card">
-                        <div class="product-icon">💰</div>
-                        <h3>Operaciones</h3>
-                        <p>Consignaciones, retiros, transferencias y consulta de movimientos.</p>
+                        <div class="product-icon"><span class="icon icon-layers" aria-hidden="true"></span></div>
+                        <h3>Todo en un solo lugar</h3>
+                        <p>Consigna, retira, transfiere y revisa tus movimientos sin salir de tu panel.</p>
                     </article>
                     <article class="card">
-                        <div class="product-icon">📱</div>
-                        <h3>Diseño responsivo</h3>
-                        <p>Interfaz organizada para computadores, tablets y móviles.</p>
+                        <div class="product-icon"><span class="icon icon-phone" aria-hidden="true"></span></div>
+                        <h3>Cuando y donde quieras</h3>
+                        <p>Consulta tus productos desde tu computador, tu tablet o tu celular.</p>
                     </article>
                 </div>
             </div>
         </section>
+
         <section class="section" id="tarjetas">
             <div class="container">
                 <h2 class="section-title">Nuestros productos</h2>
-                <p class="section-subtitle">Conoce las opciones disponibles dentro del sistema.</p>
+                <p class="section-subtitle">Elige el producto que mejor se ajusta a lo que necesitas.</p>
                 <div class="grid-3">
-                    <article class="card">
-                        <div class="product-icon">💰</div>
+                    <article class="card card-product">
+                        <div class="product-icon"><span class="icon icon-trend" aria-hidden="true"></span></div>
                         <h3>Cuenta de ahorros</h3>
-                        <p>Producto destinado al ahorro con interés mensual del 1.5% aplicado al momento del retiro.</p>
-                        <br><a class="btn btn-secondary" href="productos.html#ahorros">Ver producto</a>
+                        <p>Ahorra con un interés mensual del 1.5%, aplicado al momento del retiro.</p>
+                        <a class="btn btn-secondary" href="productos.html#ahorros">Ver producto</a>
                     </article>
-                    <article class="card">
-                        <div class="product-icon">🏦</div>
+                    <article class="card card-product">
+                        <div class="product-icon"><span class="icon icon-bank" aria-hidden="true"></span></div>
                         <h3>Cuenta corriente</h3>
-                        <p>Cuenta para operaciones frecuentes, sin intereses y con sobregiro de hasta el 20%.</p><br><a
-                            class="btn btn-secondary" href="productos.html#corriente">Ver producto</a>
+                        <p>Pensada para tus operaciones frecuentes: sin intereses y con sobregiro de hasta el 20%.</p>
+                        <a class="btn btn-secondary" href="productos.html#corriente">Ver producto</a>
                     </article>
-                    <article class="card">
-                        <div class="product-icon">💳</div>
+                    <article class="card card-product">
+                        <div class="product-icon"><span class="icon icon-card" aria-hidden="true"></span></div>
                         <h3>Tarjeta de crédito</h3>
-                        <p>Permite financiar compras y consultar el pago mensual según el número de cuotas.</p><br><a
-                            class="btn btn-secondary" href="productos.html#credito">Ver producto</a>
+                        <p>Financia tus compras y consulta tu pago mensual según el número de cuotas.</p>
+                        <a class="btn btn-secondary" href="productos.html#credito">Ver producto</a>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-flush">
+            <div class="container">
+                <div class="cta-band">
+                    <div>
+                        <h2>Empieza a manejar tu dinero con Mi Plata</h2>
+                        <p>Crea tu cuenta y accede a todos tus productos desde un solo lugar.</p>
+                    </div>
+                    <a class="btn btn-primary" href="registro.html">Crear cuenta</a>
                 </div>
             </div>
         </section>
@@ -96,7 +136,7 @@
         <div class="container footer-grid">
             <div>
                 <h3>MI PLATA</h3>
-                <p>Sistema bancario web desarrollado como proyecto académico de Desarrollo de Software.</p>
+                <p>Tu banca en línea: cuenta de ahorros, cuenta corriente y tarjeta de crédito en un solo lugar.</p>
             </div>
             <div>
                 <h4>Navegación</h4>
@@ -116,7 +156,7 @@
                 </ul>
             </div>
         </div>
-        <div class="container footer-bottom">© 2026 Mi Plata · Proyecto académico</div>
+        <div class="container footer-bottom">© 2026 Mi Plata. Todos los derechos reservados.</div>
     </footer>
 </body>
 

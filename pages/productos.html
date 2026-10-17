@@ -3,33 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Productos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container navbar"><a class="logo" href="index.html">MI <span>PLATA</span></a>
+        <div class="container navbar">
+            <a class="logo" href="index.html">MI <span>PLATA</span></a>
+            <input class="menu-toggle" type="checkbox" id="menuToggle" aria-label="Abrir o cerrar el menú">
+
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Inicio</a></li>
-                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="productos.html" aria-current="page">Productos</a></li>
+                    <li class="menu-only"><a href="login.html">Iniciar sesión</a></li>
                 </ul>
             </nav>
-            <div class="nav-actions"><a class="btn btn-outline" href="login.html">Iniciar sesión</a><a
-                    class="btn btn-primary" href="registro.html">Registrarse</a></div>
+
+            <div class="nav-actions">
+                <a class="btn btn-outline" href="login.html">Iniciar sesión</a>
+                <a class="btn btn-primary" href="registro.html">Registrarse</a>
+            </div>
+            <label class="menu-button" for="menuToggle"><span class="sr-only">Menú</span></label>
         </div>
     </header>
     <main>
         <div class="container page-title">
             <div class="breadcrumb">Inicio / Productos</div>
             <h1>Productos financieros</h1>
+            <p>Conoce las condiciones de cada producto y elige el que mejor se adapta a ti.</p>
         </div>
-        <section class="section" style="padding-top:10px">
+        <section class="section section-flush">
             <div class="container grid-3">
-                <article class="card" id="ahorros">
-                    <div class="product-icon">💰</div>
+                <article class="card card-product" id="ahorros">
+                    <div class="product-icon"><span class="icon icon-trend" aria-hidden="true"></span></div>
                     <h3>Cuenta de ahorros</h3>
                     <p>Diseñada para guardar dinero a mediano y largo plazo.</p>
                     <ul class="feature-list">
@@ -37,10 +49,11 @@
                         <li>Retiros</li>
                         <li>Interés mensual: 1.5%</li>
                         <li>Retiro limitado al saldo disponible</li>
-                    </ul><a class="btn btn-primary" href="login.html">Acceder</a>
+                    </ul>
+                    <a class="btn btn-primary" href="login.html">Acceder</a>
                 </article>
-                <article class="card" id="corriente">
-                    <div class="product-icon">🏦</div>
+                <article class="card card-product" id="corriente">
+                    <div class="product-icon"><span class="icon icon-bank" aria-hidden="true"></span></div>
                     <h3>Cuenta corriente</h3>
                     <p>Orientada a la gestión diaria del dinero.</p>
                     <ul class="feature-list">
@@ -48,10 +61,11 @@
                         <li>Retiros</li>
                         <li>Transferencias</li>
                         <li>Sobregiro hasta 20%</li>
-                    </ul><a class="btn btn-primary" href="login.html">Acceder</a>
+                    </ul>
+                    <a class="btn btn-primary" href="login.html">Acceder</a>
                 </article>
-                <article class="card" id="credito">
-                    <div class="product-icon">💳</div>
+                <article class="card card-product" id="credito">
+                    <div class="product-icon"><span class="icon icon-card" aria-hidden="true"></span></div>
                     <h3>Tarjeta de crédito</h3>
                     <p>Permite financiar compras con cuotas.</p>
                     <ul class="feature-list">
@@ -59,14 +73,37 @@
                         <li>3–6 cuotas: 1.9% mensual</li>
                         <li>7 o más: 2.3% mensual</li>
                         <li>Pago mensual visible</li>
-                    </ul><a class="btn btn-primary" href="login.html">Acceder</a>
+                    </ul>
+                    <a class="btn btn-primary" href="login.html">Acceder</a>
                 </article>
-            </div>
             </div>
         </section>
     </main>
     <footer class="footer">
-        <div class="container footer-bottom">© 2026 Mi Plata · Proyecto académico</div>
+        <div class="container footer-grid">
+            <div>
+                <h3>MI PLATA</h3>
+                <p>Tu banca en línea: cuenta de ahorros, cuenta corriente y tarjeta de crédito en un solo lugar.</p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="login.html">Iniciar sesión</a></li>
+                    <li><a href="registro.html">Registrarse</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Redes sociales</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/profile.php?id=100011143639321">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/nodrew_09/">Instagram</a></li>
+                    <li><a href="https://github.com/andresfelipe-dev/CajeroWebMiPlata/tree/admin-javascript">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">© 2026 Mi Plata. Todos los derechos reservados.</div>
     </footer>
 </body>
 

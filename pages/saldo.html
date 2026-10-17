@@ -5,60 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Saldo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
         <div class="container navbar">
-            <a class="logo" href="dashboard.html">
-                MI <span>PLATA</span>
-            </a>
-
-            <a class="btn btn-outline" href="dashboard.html">
-                Volver al panel
-            </a>
+            <a class="logo" href="dashboard.html">MI <span>PLATA</span></a>
+            <a class="btn btn-outline" href="dashboard.html">Volver al panel</a>
         </div>
     </header>
-
     <main class="dashboard">
         <div class="container">
-
             <div class="page-title">
                 <div class="breadcrumb">Panel / Saldo</div>
                 <h1>Consulta de saldo</h1>
+                <p>Selecciona una cuenta para ver su saldo disponible.</p>
             </div>
 
-            <div class="account-grid">
+            <div class="account-grid two-column">
 
                 <article class="card">
                     <h3>Seleccionar cuenta</h3>
 
-                    <label for="cuentaSeleccionada">
-                        Cuenta que deseas consultar
-                    </label>
+                    <div class="form-group">
+                        <label for="cuentaSeleccionada">Cuenta que deseas consultar</label>
+                        <select id="cuentaSeleccionada">
+                            <option value="">Selecciona una cuenta</option>
+                            <option value="ahorros">Cuenta de ahorros</option>
+                            <option value="corriente">Cuenta corriente</option>
+                        </select>
+                    </div>
 
-                    <select
-                        id="cuentaSeleccionada"
-                        style="width:100%;padding:12px;margin:15px 0;border:1px solid #D1D5DB;border-radius:10px">
-
-                        <option value="">Selecciona una cuenta</option>
-                        <option value="ahorros">Cuenta de ahorros</option>
-                        <option value="corriente">Cuenta corriente</option>
-
-                    </select>
-
-                    <button
-                        type="button"
-                        id="btnConsultarSaldo"
-                        class="btn btn-primary btn-full">
+                    <button type="button" id="btnConsultarSaldo" class="btn btn-primary btn-full">
                         Consultar saldo
                     </button>
                 </article>
 
                 <article class="balance-card" id="resultadoSaldo" hidden>
                     <div class="label" id="cuentaNombre"></div>
-                    <div class="label" id="cuentaNumero" style="font-weight: 700;"></div>
+                    <div class="label" id="cuentaNumero"></div>
                     <div class="balance" id="saldoActual">$ 0</div>
                     <span>Saldo disponible</span>
                 </article>
@@ -66,7 +55,6 @@
             </div>
         </div>
     </main>
-
     <script type="module" src="../pages js/saldo.js"></script>
 </body>
 

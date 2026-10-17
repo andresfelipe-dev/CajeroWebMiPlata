@@ -3,33 +3,43 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Iniciar sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container navbar"><a class="logo" href="index.html">MI <span>PLATA</span></a>
+        <div class="container navbar">
+            <a class="logo" href="index.html">MI <span>PLATA</span></a>
             <div class="nav-actions"><a class="btn btn-outline" href="index.html">Volver al inicio</a></div>
         </div>
     </header>
     <main class="auth-page">
         <section class="auth-card">
+            <div class="auth-icon"><span class="icon icon-lock" aria-hidden="true"></span></div>
             <h1>Iniciar sesión</h1>
             <p>Accede a tu panel de Mi Plata.</p>
             <div class="notice">Intentos disponibles: <strong id="intentos">3</strong></div>
             <form id="formLogin">
-                <div class="form-group"><label for="usuario">Nombre de usuario</label><input id="usuario" type="text"
-                        required></div>
-                <div class="form-group"><label for="clave">Contraseña</label><input id="clave" type="password" required>
-                </div><button class="btn btn-primary btn-full" type="submit">Ingresar</button>
+                <div class="form-group">
+                    <label for="usuario">Nombre de usuario</label>
+                    <input id="usuario" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="clave">Contraseña</label>
+                    <input id="clave" type="password" required>
+                </div>
+                <button class="btn btn-primary btn-full" type="submit">Ingresar</button>
             </form>
-            <p style="margin-top:20px;text-align:center">¿No tienes una cuenta? <a
-                    style="color:var(--azul-claro);font-weight:700" href="registro.html">Regístrate</a></p>
+            <p class="auth-alt">¿No tienes una cuenta? <a href="registro.html">Regístrate</a></p>
         </section>
     </main>
     <script type="module" src="../pages js/login.js"></script>
+    <script type="module" src="../pages js/crearAdmin.js"></script>
 </body>
 
 </html>
