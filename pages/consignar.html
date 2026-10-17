@@ -3,22 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Consignar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container navbar"><a class="logo" href="dashboard.html">MI <span>PLATA</span></a><a
-                class="btn btn-outline" href="dashboard.html">Volver al panel</a></div>
+        <div class="container navbar">
+            <a class="logo" href="dashboard.html">MI <span>PLATA</span></a>
+            <a class="btn btn-outline" href="dashboard.html">Volver al panel</a>
+        </div>
     </header>
     <main class="auth-page">
         <section class="auth-card">
+            <div class="auth-icon"><span class="icon icon-plus" aria-hidden="true"></span></div>
             <h1>Consignar dinero</h1>
             <p>Aumenta el saldo de uno de tus productos.</p>
             <form>
-                <div class="form-group"><label for="cuentaSeleccionada">Cuenta destino</label>
+                <div class="form-group">
+                    <label for="cuentaSeleccionada">Cuenta destino</label>
                     <select id="cuentaSeleccionada">
                         <option value="ahorros">Cuenta de ahorros</option>
                         <option value="corriente">Cuenta corriente</option>
@@ -27,9 +34,8 @@
                 <div class="form-group">
                     <label for="montoConsignar">Monto a consignar</label>
                     <input type="number" min="100" step="1" placeholder="$ 0" id="montoConsignar">
-                    </div>
-                        <button type="button" class="btn btn-primary btn-full"
-                    id="btnRealizarConsignacion">Realizar consignación</button>
+                </div>
+                <button type="button" class="btn btn-primary btn-full" id="btnRealizarConsignacion">Realizar consignación</button>
             </form>
         </section>
     </main>

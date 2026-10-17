@@ -3,14 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Administración</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container navbar"><a class="logo" href="admin.html">MI <span>PLATA</span></a>
+        <div class="container navbar">
+            <a class="logo" href="admin.html">MI <span>PLATA</span></a>
             <div class="nav-actions"><a class="btn btn-outline" id="cerrarSesion" href="index.html">Cerrar sesión</a></div>
         </div>
     </header>
@@ -21,6 +25,7 @@
                 <div>
                     <div class="breadcrumb">Panel administrativo</div>
                     <h1>Gestión de usuarios</h1>
+                    <p>Registra, edita y elimina los usuarios registrados.</p>
                 </div>
 
                 <button type="button" id="btnRegistrarUsuario" class="btn btn-primary">
@@ -28,51 +33,54 @@
                 </button>
             </div>
 
-
-            <div id="formularioRegistro" class="card" style="display: none; margin-bottom: 24px;">
+            <div id="formularioRegistro" class="card" style="display: none;">
                 <h3 id="registrarModificarUsuario">Registrar nuevo usuario</h3>
 
                 <form id="formAdmin">
-                    <div class="form-group">
-                        <label for="adminIdentificacion">Identificación</label>
-                        <input type="text" id="adminIdentificacion" required>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="adminIdentificacion">Identificación</label>
+                            <input type="text" id="adminIdentificacion" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminNombre">Nombre completo</label>
+                            <input type="text" id="adminNombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminCelular">Número de celular</label>
+                            <input type="tel" id="adminCelular" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminUsuario">Nombre de usuario</label>
+                            <input type="text" id="adminUsuario" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminClave">Contraseña</label>
+                            <input type="password" id="adminClave" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminConfirmarClave">Confirmar contraseña</label>
+                            <input type="password" id="adminConfirmarClave" required>
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-                        <label for="adminNombre">Nombre completo</label>
-                        <input type="text" id="adminNombre" required>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            Guardar usuario
+                        </button>
+
+                        <button type="button" id="btnCancelarRegistro" class="btn btn-secondary">
+                            Cancelar
+                        </button>
                     </div>
-
-                    <div class="form-group">
-                        <label for="adminCelular">Número de celular</label>
-                        <input type="tel" id="adminCelular" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="adminUsuario">Nombre de usuario</label>
-                        <input type="text" id="adminUsuario" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="adminClave">Contraseña</label>
-                        <input type="password" id="adminClave" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="adminConfirmarClave">Confirmar contraseña</label>
-                        <input type="password" id="adminConfirmarClave" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">
-                        Guardar usuario
-                    </button>
-
-                    <button type="button" id="btnCancelarRegistro" class="btn btn-secondary">
-                        Cancelar
-                    </button>
                 </form>
             </div>
-
 
             <div class="table-wrap">
                 <table>
@@ -86,9 +94,7 @@
                         </tr>
                     </thead>
 
-                    <tbody id="tablaUsuarios">
-
-                    </tbody>
+                    <tbody id="tablaUsuarios"></tbody>
                 </table>
             </div>
         </div>
