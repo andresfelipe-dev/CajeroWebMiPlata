@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Mi Plata | Retirar</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container navbar"><a class="logo" href="dashboard.html">MI <span>PLATA</span></a><a
+                class="btn btn-outline" href="dashboard.html">Volver al panel</a></div>
+    </header>
+    <main class="auth-page">
+        <section class="auth-card">
+            <h1>Retirar dinero</h1>
+            <p>Selecciona una cuenta y el monto que deseas retirar.</p>
+            <div class="notice">Las reglas de retiro dependen del tipo de cuenta.</div>
+            <form id="formRetirar">
+                <div class="form-group">
+                    <label for="cuentaSeleccionada">Cuenta</label>
+                    <select id="cuentaSeleccionada">
+                        <option value="ahorros">Cuenta de ahorros</option>
+                        <option value="corriente">Cuenta corriente</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="montoRetirar">Monto a retirar</label>
+                    <input type="number" id="montoRetirar" min="100" step="100" placeholder="$ 0" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" id="btnRealizarRetiro">
+                    Realizar retiro
+                </button>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="../pages js/retirar.js"></script>
+</body>
+
+</html>

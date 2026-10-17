@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Plata | Panel</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a class="logo" href="dashboard.html">MI <span>PLATA</span></a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html">Panel</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="btn btn-outline cerrarSesion" href="index.html">
+                    Cerrar sesión
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="container">
+
+            <div class="dashboard-head">
+                <div>
+                    <div class="breadcrumb">Panel principal</div>
+                    <h1>Bienvenid@ <strong id="nombreDashboard"></strong> </h1>
+                </div>
+
+                <a class="btn btn-secondary" href="perfil.html">
+                    Mi perfil
+                </a>
+            </div>
+
+            <h2 class="section-title" style="text-align:left;font-size:1.6rem">
+                Operaciones
+            </h2>
+
+            <div class="actions-grid">
+
+                <a class="action-card" href="saldo.html">
+                    💰<br>
+                    Consultar saldo
+                </a>
+
+                <a class="action-card" href="consignar.html">
+                    ➕<br>
+                    Consignar dinero
+                </a>
+
+                <a class="action-card" href="retirar.html">
+                    ➖<br>
+                    Retirar dinero
+                </a>
+
+                <a class="action-card" href="transferir.html">
+                    ↔️<br>
+                    Transferir dinero
+                </a>
+
+                <a class="action-card" href="movimientos.html">
+                    📋<br>
+                    Consultar movimientos
+                </a>
+
+                <a class="action-card" href="perfil.html">
+                    👤<br>
+                    Mi perfil
+                </a>
+
+                <a class="action-card" href="tarjeta.html">
+                    💳<br>
+                    Tarjeta de crédito
+                </a>
+
+                <a class="action-card cerrarSesion" href="index.html">
+                    🚪<br>
+                    Cerrar sesión
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../pages js/dashboard.js"></script>
+</body>
+
+</html>

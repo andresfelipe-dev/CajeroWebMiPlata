@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Plata | Saldo</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a class="logo" href="dashboard.html">
+                MI <span>PLATA</span>
+            </a>
+
+            <a class="btn btn-outline" href="dashboard.html">
+                Volver al panel
+            </a>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="container">
+
+            <div class="page-title">
+                <div class="breadcrumb">Panel / Saldo</div>
+                <h1>Consulta de saldo</h1>
+            </div>
+
+            <div class="account-grid">
+
+                <article class="card">
+                    <h3>Seleccionar cuenta</h3>
+
+                    <label for="cuentaSeleccionada">
+                        Cuenta que deseas consultar
+                    </label>
+
+                    <select
+                        id="cuentaSeleccionada"
+                        style="width:100%;padding:12px;margin:15px 0;border:1px solid #D1D5DB;border-radius:10px">
+
+                        <option value="">Selecciona una cuenta</option>
+                        <option value="ahorros">Cuenta de ahorros</option>
+                        <option value="corriente">Cuenta corriente</option>
+
+                    </select>
+
+                    <button
+                        type="button"
+                        id="btnConsultarSaldo"
+                        class="btn btn-primary btn-full">
+                        Consultar saldo
+                    </button>
+                </article>
+
+                <article class="balance-card" id="resultadoSaldo" hidden>
+                    <div class="label" id="cuentaNombre"></div>
+                    <div class="label" id="cuentaNumero" style="font-weight: 700;"></div>
+                    <div class="balance" id="saldoActual">$ 0</div>
+                    <span>Saldo disponible</span>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../pages js/saldo.js"></script>
+</body>
+
+</html>

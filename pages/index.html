@@ -1,13 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mi Plata | Inicio</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
 
-    <script type="module" src="../src/"></script>
+<body>
+    <header class="site-header">
+        <div class="container navbar"><a class="logo" href="index.html">MI <span>PLATA</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#nosotros">Nosotros</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="index.html#tarjetas">Tarjetas</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions"><a class="btn btn-outline" href="login.html">Iniciar sesión</a><a
+                    class="btn btn-primary" href="registro.html">Registrarse</a></div>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <h1>Tu dinero, tus productos, <span style="color:#61B4FF">Mi Plata.</span></h1>
+                    <p>Una experiencia bancaria web para gestionar cuentas de ahorros, cuenta corriente y tarjeta de
+                        crédito desde un solo lugar.</p>
+                    <div class="hero-actions"><a class="btn btn-primary" href="login.html">Iniciar sesión</a><a
+                            class="btn btn-outline" href="registro.html">Crear cuenta</a></div>
+                </div>
+                <div class="hero-card">
+                    <h3>Tu experiencia bancaria</h3>
+                    <div class="stat"><span>Cuenta de ahorros</span><strong>1.5% mensual</strong></div>
+                    <div class="stat"><span>Cuenta corriente</span><strong>20% sobregiro</strong></div>
+                    <div class="stat"><span>Tarjeta de crédito</span><strong>Cuotas flexibles</strong></div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="nosotros">
+            <div class="container">
+                <h2 class="section-title">Conoce Mi Plata</h2>
+                <p class="section-subtitle">Sistema bancario web orientado a la gestión de productos financieros y
+                    operaciones bancarias.</p>
+                <div class="grid-3">
+                    <article class="card">
+                        <div class="product-icon">🔐</div>
+                        <h3>Acceso controlado</h3>
+                        <p>Registro e inicio de sesión con validación de credenciales.</p>
+                    </article>
+                    <article class="card">
+                        <div class="product-icon">💰</div>
+                        <h3>Operaciones</h3>
+                        <p>Consignaciones, retiros, transferencias y consulta de movimientos.</p>
+                    </article>
+                    <article class="card">
+                        <div class="product-icon">📱</div>
+                        <h3>Diseño responsivo</h3>
+                        <p>Interfaz organizada para computadores, tablets y móviles.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="tarjetas">
+            <div class="container">
+                <h2 class="section-title">Nuestros productos</h2>
+                <p class="section-subtitle">Conoce las opciones disponibles dentro del sistema.</p>
+                <div class="grid-3">
+                    <article class="card">
+                        <div class="product-icon">💰</div>
+                        <h3>Cuenta de ahorros</h3>
+                        <p>Producto destinado al ahorro con interés mensual del 1.5% aplicado al momento del retiro.</p>
+                        <br><a class="btn btn-secondary" href="productos.html#ahorros">Ver producto</a>
+                    </article>
+                    <article class="card">
+                        <div class="product-icon">🏦</div>
+                        <h3>Cuenta corriente</h3>
+                        <p>Cuenta para operaciones frecuentes, sin intereses y con sobregiro de hasta el 20%.</p><br><a
+                            class="btn btn-secondary" href="productos.html#corriente">Ver producto</a>
+                    </article>
+                    <article class="card">
+                        <div class="product-icon">💳</div>
+                        <h3>Tarjeta de crédito</h3>
+                        <p>Permite financiar compras y consultar el pago mensual según el número de cuotas.</p><br><a
+                            class="btn btn-secondary" href="productos.html#credito">Ver producto</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>MI PLATA</h3>
+                <p>Sistema bancario web desarrollado como proyecto académico de Desarrollo de Software.</p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="login.html">Iniciar sesión</a></li>
+                    <li><a href="registro.html">Registrarse</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Redes sociales</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/profile.php?id=100011143639321">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/nodrew_09/">Instagram</a></li>
+                    <li><a href="https://github.com/andresfelipe-dev/CajeroWebMiPlata/tree/admin-javascript">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">© 2026 Mi Plata · Proyecto académico</div>
+    </footer>
 </body>
+
 </html>

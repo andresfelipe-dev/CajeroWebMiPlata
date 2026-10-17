@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Mi Plata | Transferir</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container navbar"><a class="logo" href="dashboard.html">MI <span>PLATA</span></a><a
+                class="btn btn-outline" href="dashboard.html">Volver al panel</a></div>
+    </header>
+    <main class="auth-page">
+        <section class="auth-card" style="width:min(100%,650px)">
+            <h1>Transferir dinero</h1>
+            <p>Envía dinero entre productos distintos o a otra cuenta.</p>
+            <form id="formTransferir">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cuentaOrigen">Cuenta origen</label>
+                        <select id="cuentaOrigen" required>
+                            <option value="ahorros">Ahorros</option>
+                            <option value="corriente">Corriente</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoDestino">Tipo de destino</label>
+                        <select id="tipoDestino" required>
+                            <option value="propio">Producto propio</option>
+                            <option value="otroUsuario">Cuenta de otro usuario</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cuentaDestino">Cuenta destino</label>
+                    <input type="text" id="cuentaDestino" placeholder="Número de cuenta" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="montoTransferir">Monto</label>
+                    <input type="number" id="montoTransferir" min="100" step="1" placeholder="$ 0" required>
+                </div>
+
+                <div class="notice">
+                    No se permite transferir al mismo producto de origen.
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" id="btnRealizarTransferencia">
+                    Realizar transferencia
+                </button>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="../pages js/transferir.js"></script>
+</body>
+
+</html>

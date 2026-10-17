@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Mi Plata | Tarjeta</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container navbar"><a class="logo" href="dashboard.html">MI <span>PLATA</span></a><a
+                class="btn btn-outline" href="dashboard.html">Volver al panel</a></div>
+    </header>
+    <main class="dashboard">
+        <div class="container">
+            <div class="page-title">
+                <div class="breadcrumb">Panel / Tarjeta de crédito</div>
+                <h1>Tarjeta de crédito</h1>
+            </div>
+            <div class="two-column">
+                <section class="card"
+                    style="background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));color:white">
+                    <div style="font-size:.9rem;opacity:.8">MI PLATA</div>
+                    <h2 style="margin:45px 0 20px" id="numeroTarjeta"></h2>
+                    <div style="display:flex;justify-content:space-between"><span id="nombreUsuarioTarjeta">ANDRÉS
+                            FELIPE</span><span>VISA</span>
+                    </div>
+                </section>
+                <section class="card">
+                    <h3>Cupo disponible</h3>
+                    <div class="balance" id="cupoDisponible" style="color:var(--azul-oscuro)">
+
+                    </div>
+                    <p>Gestiona una compra y consulta el pago mensual según el número de cuotas.</p>
+
+                    <form id="formCompra" style="margin-top:20px">
+                        <div class="form-group">
+                            <label for="valorCompra">Valor de compra</label>
+                            <input type="number" id="valorCompra" min="100" step="1" placeholder="Ej. 250000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numeroCuotas">Número de cuotas</label>
+                            <select id="numeroCuotas" required>
+                                <option value="1">1 cuota</option>
+                                <option value="2">2 cuotas</option>
+                                <option value="3">3 cuotas</option>
+                                <option value="6">6 cuotas</option>
+                                <option value="7">7 cuotas</option>
+                                <option value="12">12 cuotas</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            Calcular pago mensual
+                        </button>
+                    </form>
+
+                    <div id="resultadoCompra" aria-live="polite" style="margin-top:20px"></div>
+                </section>
+            </div>
+            <div class="card" style="margin-top:24px">
+                <h3>Reglas de cuotas</h3>
+                <ul class="feature-list">
+                    <li>Hasta 2 cuotas: 0% mensual</li>
+                    <li>3 a 6 cuotas: 1.9% mensual</li>
+                    <li>7 o más cuotas: 2.3% mensual</li>
+                </ul>
+            </div>
+
+            <div class="card" style="margin-top:24px">
+                <h3>Historial de compras</h3>
+
+                <div id="historialCompras">
+                    <p>No tienes compras registradas.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script type="module" src="../pages js/tarjeta.js"></script>
+</body>
+
+</html>
