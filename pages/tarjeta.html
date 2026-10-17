@@ -3,39 +3,41 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Tarjeta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container navbar"><a class="logo" href="dashboard.html">MI <span>PLATA</span></a><a
-                class="btn btn-outline" href="dashboard.html">Volver al panel</a></div>
+        <div class="container navbar">
+            <a class="logo" href="dashboard.html">MI <span>PLATA</span></a>
+            <a class="btn btn-outline" href="dashboard.html">Volver al panel</a>
+        </div>
     </header>
     <main class="dashboard">
         <div class="container">
             <div class="page-title">
                 <div class="breadcrumb">Panel / Tarjeta de crédito</div>
                 <h1>Tarjeta de crédito</h1>
+                <p>Consulta tu cupo y calcula el pago mensual de tus compras.</p>
             </div>
             <div class="two-column">
-                <section class="card"
-                    style="background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));color:white">
-                    <div style="font-size:.9rem;opacity:.8">MI PLATA</div>
-                    <h2 style="margin:45px 0 20px" id="numeroTarjeta"></h2>
-                    <div style="display:flex;justify-content:space-between"><span id="nombreUsuarioTarjeta">ANDRÉS
-                            FELIPE</span><span>VISA</span>
-                    </div>
+                <section class="card card-credit">
+                    <div class="card-credit-top"><span>MI PLATA</span><span class="icon icon-card" aria-hidden="true"></span></div>
+                    <div class="card-credit-chip"></div>
+                    <h2 id="numeroTarjeta"></h2>
+                    <div class="card-credit-footer"><span id="nombreUsuarioTarjeta"></span><span>VISA</span></div>
                 </section>
                 <section class="card">
                     <h3>Cupo disponible</h3>
-                    <div class="balance" id="cupoDisponible" style="color:var(--azul-oscuro)">
-
-                    </div>
+                    <div class="balance" id="cupoDisponible"></div>
                     <p>Gestiona una compra y consulta el pago mensual según el número de cuotas.</p>
 
-                    <form id="formCompra" style="margin-top:20px">
+                    <form id="formCompra">
                         <div class="form-group">
                             <label for="valorCompra">Valor de compra</label>
                             <input type="number" id="valorCompra" min="100" step="1" placeholder="Ej. 250000" required>
@@ -58,10 +60,11 @@
                         </button>
                     </form>
 
-                    <div id="resultadoCompra" aria-live="polite" style="margin-top:20px"></div>
+                    <div id="resultadoCompra" aria-live="polite"></div>
                 </section>
             </div>
-            <div class="card" style="margin-top:24px">
+
+            <div class="card">
                 <h3>Reglas de cuotas</h3>
                 <ul class="feature-list">
                     <li>Hasta 2 cuotas: 0% mensual</li>
@@ -70,7 +73,7 @@
                 </ul>
             </div>
 
-            <div class="card" style="margin-top:24px">
+            <div class="card">
                 <h3>Historial de compras</h3>
 
                 <div id="historialCompras">

@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Plata | Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
@@ -12,12 +15,14 @@
     <header class="site-header">
         <div class="container navbar">
             <a class="logo" href="dashboard.html">MI <span>PLATA</span></a>
+            <input class="menu-toggle" type="checkbox" id="menuToggle" aria-label="Abrir o cerrar el menú">
 
             <nav>
                 <ul class="nav-links">
-                    <li><a href="dashboard.html">Panel</a></li>
+                    <li><a href="dashboard.html" aria-current="page">Panel</a></li>
                     <li><a href="perfil.html">Perfil</a></li>
                     <li><a href="productos.html">Productos</a></li>
+                    <li class="menu-only"><a class="cerrarSesion" href="index.html">Cerrar sesión</a></li>
                 </ul>
             </nav>
 
@@ -26,69 +31,134 @@
                     Cerrar sesión
                 </a>
             </div>
+            <label class="menu-button" for="menuToggle"><span class="sr-only">Menú</span></label>
         </div>
     </header>
 
     <main class="dashboard">
         <div class="container">
 
-            <div class="dashboard-head">
-                <div>
-                    <div class="breadcrumb">Panel principal</div>
-                    <h1>Bienvenid@ <strong id="nombreDashboard"></strong> </h1>
+            <section class="welcome-banner">
+                <div class="dashboard-head">
+                    <div>
+                        <div class="breadcrumb">Panel principal</div>
+                        <h1>Bienvenid@ <strong id="nombreDashboard"></strong> </h1>
+                        <p>Gestiona tus productos y realiza tus operaciones desde un solo lugar.</p>
+                    </div>
+
+                    <a class="btn btn-secondary" href="perfil.html">
+                        Mi perfil
+                    </a>
                 </div>
+            </section>
 
-                <a class="btn btn-secondary" href="perfil.html">
-                    Mi perfil
-                </a>
-            </div>
+            <section>
+                <div class="block-head">
+                    <h2 class="section-title section-title-left">Tus productos</h2>
+                    <p>Estas son las condiciones de cada uno.</p>
+                </div>
+                <div class="account-grid">
+                <article class="account-card">
+                    <div class="type"><span class="product-icon"><span class="icon icon-trend" aria-hidden="true"></span></span>Cuenta de ahorros</div>
+                    <div class="amount">1.5% mensual</div>
+                    <div class="amount-note">Interés aplicado al momento del retiro</div>
+                    <ul class="feature-list">
+                        <li>Consignaciones y retiros</li>
+                        <li>Retiro limitado al saldo disponible</li>
+                    </ul>
+                    <a class="btn btn-secondary" href="saldo.html">Consultar saldo</a>
+                </article>
+                <article class="account-card">
+                    <div class="type"><span class="product-icon"><span class="icon icon-bank" aria-hidden="true"></span></span>Cuenta corriente</div>
+                    <div class="amount">Hasta 20%</div>
+                    <div class="amount-note">De sobregiro, sin intereses</div>
+                    <ul class="feature-list">
+                        <li>Consignaciones, retiros y transferencias</li>
+                        <li>Ideal para tus operaciones frecuentes</li>
+                    </ul>
+                    <a class="btn btn-secondary" href="transferir.html">Transferir dinero</a>
+                </article>
+                <article class="account-card">
+                    <div class="type"><span class="product-icon"><span class="icon icon-card" aria-hidden="true"></span></span>Tarjeta de crédito</div>
+                    <div class="amount">0% hasta 2 cuotas</div>
+                    <div class="amount-note">Desde 3 cuotas: 1.9% a 2.3% mensual</div>
+                    <ul class="feature-list">
+                        <li>Compra y paga en cuotas</li>
+                        <li>Consulta tu pago mensual</li>
+                    </ul>
+                    <a class="btn btn-secondary" href="tarjeta.html">Ver mi tarjeta</a>
+                </article>
+                </div>
+            </section>
 
-            <h2 class="section-title" style="text-align:left;font-size:1.6rem">
-                Operaciones
-            </h2>
-
-            <div class="actions-grid">
-
+            <section>
+                <div class="block-head">
+                    <h2 class="section-title section-title-left">Operaciones</h2>
+                    <p>Elige qué quieres hacer.</p>
+                </div>
+                <div class="actions-grid">
                 <a class="action-card" href="saldo.html">
-                    💰<br>
-                    Consultar saldo
+                    <span class="product-icon"><span class="icon icon-wallet" aria-hidden="true"></span></span>
+                    <span>
+                        <strong>Consultar saldo</strong>
+                        <small>Revisa lo disponible en tus cuentas</small>
+                    </span>
                 </a>
-
                 <a class="action-card" href="consignar.html">
-                    ➕<br>
-                    Consignar dinero
+                    <span class="product-icon"><span class="icon icon-plus" aria-hidden="true"></span></span>
+                    <span>
+                        <strong>Consignar dinero</strong>
+                        <small>Aumenta el saldo de tus productos</small>
+                    </span>
                 </a>
-
                 <a class="action-card" href="retirar.html">
-                    ➖<br>
-                    Retirar dinero
+                    <span class="product-icon"><span class="icon icon-minus" aria-hidden="true"></span></span>
+                    <span>
+                        <strong>Retirar dinero</strong>
+                        <small>Retira de tu cuenta de ahorros o corriente</small>
+                    </span>
                 </a>
-
                 <a class="action-card" href="transferir.html">
-                    ↔️<br>
-                    Transferir dinero
+                    <span class="product-icon"><span class="icon icon-transfer" aria-hidden="true"></span></span>
+                    <span>
+                        <strong>Transferir dinero</strong>
+                        <small>Envía a tus productos o a otro usuario</small>
+                    </span>
                 </a>
-
                 <a class="action-card" href="movimientos.html">
-                    📋<br>
-                    Consultar movimientos
+                    <span class="product-icon"><span class="icon icon-list" aria-hidden="true"></span></span>
+                    <span>
+                        <strong>Consultar movimientos</strong>
+                        <small>Revisa el historial de tus operaciones</small>
+                    </span>
                 </a>
-
-                <a class="action-card" href="perfil.html">
-                    👤<br>
-                    Mi perfil
-                </a>
-
                 <a class="action-card" href="tarjeta.html">
-                    💳<br>
-                    Tarjeta de crédito
+                    <span class="product-icon"><span class="icon icon-card" aria-hidden="true"></span></span>
+                    <span>
+                        <strong>Tarjeta de crédito</strong>
+                        <small>Consulta tu cupo y calcula tus compras</small>
+                    </span>
                 </a>
+                </div>
+            </section>
 
-                <a class="action-card cerrarSesion" href="index.html">
-                    🚪<br>
-                    Cerrar sesión
-                </a>
-
+            <div class="two-column">
+                <section class="card">
+                    <h3>Consejos de seguridad</h3>
+                    <ul class="feature-list">
+                        <li>No compartas tu contraseña con nadie.</li>
+                        <li>Cierra sesión cuando termines de usar tu cuenta.</li>
+                        <li>Revisa los datos antes de confirmar una transferencia.</li>
+                    </ul>
+                </section>
+                <section class="card">
+                    <h3>Ten en cuenta</h3>
+                    <ul class="feature-list">
+                        <li>No se puede transferir al mismo producto de origen.</li>
+                        <li>El historial reúne los movimientos de todas tus cuentas.</li>
+                        <li>Tu tarjeta no cobra intereses hasta en 2 cuotas.</li>
+                    </ul>
+                </section>
             </div>
         </div>
     </main>
