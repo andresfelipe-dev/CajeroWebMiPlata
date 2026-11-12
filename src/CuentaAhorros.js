@@ -31,7 +31,7 @@ export default class CuentaAhorros extends Cuenta {
     }
 
     /** Calcula cuánto dinero podría salir, incluidos intereses del momento. */
-    cconsultarDisponible() {
+    consultarDisponible() {
         return Math.max(0, this.getSaldo() + this.retiroIntereses());
     }
 }
