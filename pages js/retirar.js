@@ -1,3 +1,4 @@
+import "./vencimientosCDT.js";
 import ServicioBancario from "../src/ServicioBancario.js";
 import {mostrarMensaje} from "./mensajes.js";
 const servicio = new ServicioBancario();

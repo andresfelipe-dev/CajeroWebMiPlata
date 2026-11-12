@@ -1,3 +1,4 @@
+import "./vencimientosCDT.js";
 import RepositorioBancario from "../src/RepositorioBancario.js";
 import {mostrarMensaje} from "./mensajes.js";
 const repo = new RepositorioBancario();

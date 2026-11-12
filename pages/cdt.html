@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Plata | Mis CDT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a class="logo" href="dashboard.html">MI <span>PLATA</span></a>
+            <a class="btn btn-outline" href="dashboard.html">Volver al panel</a>
+        </div>
+    </header>
+
+    <main class="dashboard cdt-page">
+        <div class="container">
+            <section class="cdt-page-hero">
+                <div>
+                    <span class="cdt-eyebrow">NUEVO PRODUCTO · SIMULACIÓN</span>
+                    <h1>Haz crecer tu dinero con un CDT</h1>
+                    <p>Invierte desde $50.000 usando el saldo real de ahorros o corriente. Abre varios CDT y observa sus rendimientos en tiempo real.</p>
+                </div>
+                <div class="cdt-hero-stat" aria-label="Rendimiento máximo del simulador">
+                    <span>Hasta</span>
+                    <strong>15 %</strong>
+                    <small>en solo 60 segundos</small>
+                </div>
+            </section>
+
+            <section class="cdt-plan-grid" aria-label="Opciones de CDT">
+                <article class="cdt-plan">
+                    <span class="cdt-plan-name">CDT Básico</span>
+                    <strong>9 %</strong>
+                    <span>10 segundos</span>
+                </article>
+                <article class="cdt-plan">
+                    <span class="cdt-plan-name">CDT Plus</span>
+                    <strong>12 %</strong>
+                    <span>30 segundos</span>
+                </article>
+                <article class="cdt-plan">
+                    <span class="cdt-plan-name">CDT Premium</span>
+                    <strong>15 %</strong>
+                    <span>60 segundos</span>
+                </article>
+            </section>
+
+            <section class="card cdt-open-card">
+                <h2>Abrir un nuevo CDT</h2>
+                <p>Al confirmar, el capital se descuenta de tu cuenta sin aplicar intereses ni sobregiro. Al vencimiento regresa a esa misma cuenta con su rendimiento.</p>
+                <form id="formCDT">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="cuentaOrigenCDT">Cuenta de origen</label>
+                            <select id="cuentaOrigenCDT" required>
+                                <option value="ahorros">Cuenta de ahorros</option>
+                                <option value="corriente">Cuenta corriente</option>
+                            </select>
+                            <small id="saldoRealCDT" class="cdt-field-help"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="montoCDT">Capital a invertir</label>
+                            <input id="montoCDT" type="number" min="50000" step="1" placeholder="Ej. 100000" required>
+                            <small class="cdt-field-help">Inversión mínima: $50.000</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="plazoCDT">Plazo y rendimiento</label>
+                            <select id="plazoCDT" required>
+                                <option value="10">10 segundos · 9 %</option>
+                                <option value="30">30 segundos · 12 %</option>
+                                <option value="60">60 segundos · 15 %</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cdt-preview" aria-live="polite">
+                        <div><span>Rendimiento estimado</span><strong id="rendimientoPrevisto">$0</strong></div>
+                        <div><span>Recibirás al finalizar</span><strong id="totalPrevisto">$0</strong></div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Revisar inversión</button>
+                </form>
+
+                <div id="confirmacionCDT" class="cdt-confirm" hidden>
+                    <h3>Confirma la apertura</h3>
+                    <p id="resumenConfirmacionCDT"></p>
+                    <div class="form-actions">
+                        <button id="confirmarCDT" type="button" class="btn btn-primary">Confirmar y abrir CDT</button>
+                        <button id="cancelarCDT" type="button" class="btn btn-outline">Volver</button>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-labelledby="tituloActivosCDT">
+                <div class="block-head">
+                    <h2 id="tituloActivosCDT" class="section-title section-title-left">Mis CDT activos</h2>
+                    <p id="resumenCDT">Cada CDT tiene su propio contador.</p>
+                </div>
+                <div id="listaCDTActivos" class="cdt-list" aria-live="off"></div>
+            </section>
+
+            <section aria-labelledby="tituloHistorialCDT">
+                <div class="block-head">
+                    <h2 id="tituloHistorialCDT" class="section-title section-title-left">CDT finalizados</h2>
+                    <p>Consulta las inversiones que ya regresaron a sus cuentas.</p>
+                </div>
+                <div id="listaCDTFinalizados" class="cdt-list"></div>
+            </section>
+            <p class="cdt-disclaimer">Esta es una simulación educativa: las tasas y duraciones no representan un CDT bancario real. Los abonos pendientes se procesan al volver a abrir Mi Plata si el navegador estuvo cerrado.</p>
+        </div>
+    </main>
+    <script type="module" src="../pages js/cdt.js"></script>
+</body>
+</html>

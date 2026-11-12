@@ -1,3 +1,4 @@
+import "./vencimientosCDT.js";
 import RepositorioBancario from "../src/RepositorioBancario.js";
 const repositorio = new RepositorioBancario();
 const usuario = sessionStorage.getItem("usuarioActivo");
@@ -24,6 +25,8 @@ function mostrarMovimientos() {
             detalles = `Cuenta origen: ${m.origen}`;
         } else if (m.tarjeta) {
             detalles = `Tarjeta: ${m.tarjeta}`;
+        } else if (m.cdt) {
+            detalles = `CDT: ${m.cdt}${Number.isFinite(m.rendimiento) ? ` · Rendimiento: $${m.rendimiento.toLocaleString("es-CO")}` : ""}`;
         }
 
         const valores = [
@@ -51,6 +54,8 @@ function mostrarMovimientos() {
                     etiqueta.classList.add("movimiento-interes");
                 } else if (m.tipo === "Pago tarjeta de crédito") {
                     etiqueta.classList.add("movimiento-tarjeta");
+                } else if (m.tipo === "Apertura de CDT" || m.tipo === "CDT finalizado") {
+                    etiqueta.classList.add("movimiento-cdt");
                 }
 
                 td.appendChild(etiqueta);

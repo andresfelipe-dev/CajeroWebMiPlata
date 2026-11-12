@@ -1,3 +1,4 @@
+import "./vencimientosCDT.js";
 import ServicioBancario from "../src/ServicioBancario.js";
 import RepositorioBancario from "../src/RepositorioBancario.js";
 import {mostrarMensaje} from "./mensajes.js";
