@@ -1,64 +1,67 @@
-const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-const usuarioActivo = sessionStorage.getItem("usuarioActivo")
-const clienteActual = listaUsuarios.find(function (cliente) {
-    return cliente.usuario === usuarioActivo
-})
-if (!usuarioActivo || !clienteActual) {
-    window.location.href = "login.html"
-}
-const listaMovimientos = document.getElementById("listaMovimientos")
+import RepositorioBancario from "../src/RepositorioBancario.js";
+const repositorio = new RepositorioBancario();
+const usuario = sessionStorage.getItem("usuarioActivo");
+const cliente = repositorio.buscarCliente(usuario);
+if (sessionStorage.getItem("tipoUsuarioActivo") !== "cliente" || !cliente) window.location.href = "login.html";
 
+/** Presenta todos los movimientos bancarios, del más reciente al más antiguo. */
+function mostrarMovimientos() {
+    if (!cliente) return;
+    const tbody = document.getElementById("listaMovimientos");
+    tbody.replaceChildren();
+    const movimientos = cliente.cuentas.flatMap(datos => repositorio.reconstruirCuenta(datos).consultarMovimientos().map(m => ({ ...m, producto: datos.tipo })));
+    movimientos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    movimientos.forEach(m => {
+        const tr = document.createElement("tr");
+        const fecha = new Date(m.fecha).toLocaleString("es-CO", { timeZone: "America/Bogota" });
 
-// Reunir los movimientos de todas las cuentas en un solo arreglo
-const movimientos = [];
+        // Obtiene la información adicional del movimiento.
+        let detalles = "—";
 
-clienteActual.cuentas.forEach(function (cuenta) {
-    cuenta.movimientos.forEach(function (movimiento) {
-        movimientos.push({
-            ...movimiento,
-            producto: cuenta.tipo
+        if (m.destino) {
+            detalles = `Cuenta destino: ${m.destino}`;
+        } else if (m.origen) {
+            detalles = `Cuenta origen: ${m.origen}`;
+        } else if (m.tarjeta) {
+            detalles = `Tarjeta: ${m.tarjeta}`;
+        }
+
+        const valores = [
+            fecha,
+            m.tipo,
+            m.producto === "ahorros" ? "Ahorros" : "Corriente",
+            `$ ${Number(m.valor).toLocaleString("es-CO")}`,
+            detalles
+        ];
+
+        valores.forEach((valor, indice) => {
+            const td = document.createElement("td");
+
+            if (indice === 1) {
+                const etiqueta = document.createElement("span");
+
+                etiqueta.textContent = valor;
+                etiqueta.classList.add("etiqueta-movimiento");
+
+                if (m.tipo === "Consignación" || m.tipo === "Transferencia recibida") {
+                    etiqueta.classList.add("movimiento-ingreso");
+                } else if (m.tipo === "Retiro" || m.tipo === "Transferencia enviada") {
+                    etiqueta.classList.add("movimiento-salida");
+                } else if (m.tipo === "Intereses de ahorros") {
+                    etiqueta.classList.add("movimiento-interes");
+                } else if (m.tipo === "Pago tarjeta de crédito") {
+                    etiqueta.classList.add("movimiento-tarjeta");
+                }
+
+                td.appendChild(etiqueta);
+            } else {
+                td.textContent = valor;
+            }
+
+            tr.appendChild(td);
         });
+
+        tbody.append(tr);
     });
-});
-
-// Ordenar del movimiento más reciente al más antiguo
-movimientos.sort(function (a, b) {
-    return new Date(b.fecha) - new Date(a.fecha);
-});
-
-// Mostrar los movimientos ordenados en la tabla
-movimientos.forEach(function (movimiento) {
-    console.log(movimiento.fecha);
-
-    const producto = movimiento.producto === "ahorros"
-        ? "Ahorros"
-        : "Corriente";
-
-    let claseTipo = "";
-
-    //Esto es únicamente para conservar los estilos del archivo css y se aplica solo a el tipo de movimiento
-    if (movimiento.tipo === "Consignación") {
-        claseTipo = "badge-success";
-    } else if (movimiento.tipo === "Retiro") {
-        claseTipo = "badge-danger";
-    } else if (movimiento.tipo === "Transferencia enviada") {
-        claseTipo = "badge-warning";
-    } else if(movimiento.tipo === "Transferencia recibida") {
-        claseTipo = "badge-notification"
-    }
-
-    const fila = document.createElement("tr");
-
-    fila.innerHTML = `
-        <td>${new Date(movimiento.fecha).toLocaleString("es-CO", {
-            timeZone: "America/Bogota"
-        })}</td>
-        <td><span class="badge ${claseTipo}">${movimiento.tipo}</span></td>
-        <td>${producto}</td>
-        <td>$ ${Number(movimiento.valor).toLocaleString("es-CO")}</td>
-    `;
-
-    listaMovimientos.appendChild(fila);
-});
-
-
+}
+mostrarMovimientos();

@@ -34,7 +34,7 @@
                 </section>
                 <section class="card">
                     <h3>Cupo disponible</h3>
-                    <div class="balance" id="cupoDisponible"></div>
+                    <div class="balance" id="cupoDisponible"></div><p><strong>Deuda actual:</strong> <span id="deudaActual"></span></p>
                     <p>Gestiona una compra y consulta el pago mensual según el número de cuotas.</p>
 
                     <form id="formCompra">
@@ -64,6 +64,21 @@
                 </section>
             </div>
 
+            <section class="card">
+                <h3>Pagar tarjeta de crédito</h3>
+                <p>Realiza un pago parcial o total desde una de tus cuentas.</p>
+                <form id="formPagoTarjeta">
+                    <div class="form-grid">
+                        <div class="form-group"><label for="cuentaPagoTarjeta">Cuenta de origen</label>
+                            <select id="cuentaPagoTarjeta" required><option value="ahorros">Ahorros</option><option value="corriente">Corriente</option></select>
+                        </div>
+                        <div class="form-group"><label for="montoPagoTarjeta">Valor del pago</label>
+                            <input id="montoPagoTarjeta" type="number" min="100" step="1" required placeholder="Ej. 50000">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Pagar tarjeta</button>
+                </form>
+            </section>
             <div class="card">
                 <h3>Reglas de cuotas</h3>
                 <ul class="feature-list">

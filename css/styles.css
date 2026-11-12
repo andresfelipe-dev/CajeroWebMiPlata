@@ -1189,6 +1189,41 @@ td .btn+.btn {
   color: var(--gris-500)
 }
 
+
+/* Estilo general de las etiquetas */
+.etiqueta-movimiento {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Consignaciones y transferencias recibidas */
+.movimiento-ingreso {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+}
+
+/* Retiros y transferencias enviadas */
+.movimiento-salida {
+    background-color: #ffebee;
+    color: #b71c1c;
+}
+
+/* Intereses de ahorros */
+.movimiento-interes {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+/* Pagos de tarjeta */
+.movimiento-tarjeta {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+}
+
+
 .badge {
   display: inline-block;
   padding: 4px 10px;
@@ -1508,3 +1543,9 @@ td .btn+.btn {
   --i: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3L3 8l9 5 9-5z'/%3E%3Cpath d='M3 13l9 5 9-5'/%3E%3C/svg%3E")
 }
 
+
+/* Mensajes de las operaciones sin alertas del navegador */
+.notificacion {position:fixed;right:22px;bottom:24px;z-index:3000;max-width:min(430px,calc(100vw - 32px));padding:16px 20px;border-radius:14px;background:#e8f8ee;color:#175331;border:1px solid #a9ddba;box-shadow:0 12px 36px #102a4333;font-weight:700;line-height:1.45;}
+.notificacion-error {background:#fff0ed;color:#9b2c25;border-color:#ffb9b0;}
+.notificacion[hidden] {display:none;}
+@media(max-width:600px){.notificacion{left:16px;right:16px;bottom:16px;}}

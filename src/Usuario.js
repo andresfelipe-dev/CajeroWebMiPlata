@@ -59,7 +59,4 @@ export default class Usuario {
     setContrasenia(contrasenia) {
         this.#contrasenia = contrasenia;
     }
-
-    //Metodos
 }
-
