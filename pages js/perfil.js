@@ -1,122 +1,44 @@
-import Cliente from "../src/Cliente.js"
+import "./vencimientosCDT.js";
+import RepositorioBancario from "../src/RepositorioBancario.js";
+import {mostrarMensaje} from "./mensajes.js";
+const repo = new RepositorioBancario();
+const elemento = id => document.getElementById(id);
+let usuarioActivo = sessionStorage.getItem("usuarioActivo");
+let cliente = repo.buscarCliente(usuarioActivo);
+if (sessionStorage.getItem("tipoUsuarioActivo") !== "cliente" || !cliente) window.location.href = "login.html";
 
-const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-const usuarioActivo = sessionStorage.getItem("usuarioActivo");
-const clienteActual = listaUsuarios.find(function (cliente) {
-    return cliente.usuario === usuarioActivo
+/** Muestra los datos actuales del perfil sin mostrar la contraseña. */
+function cargarPerfil() {
+    if (!cliente) return;
+    elemento("identificacion").value = cliente.id;
+    elemento("nombreCompleto").value = cliente.nombre;
+    elemento("celular").value = cliente.celular;
+    elemento("nombreUsuario").value = cliente.usuario;
+}
+
+/** Modifica los datos personales sin alterar las cuentas. */
+elemento("formPerfil").addEventListener("submit", event => {
+    event.preventDefault();
+    try {
+        const datos = {id: elemento("identificacion").value.trim(), nombre: elemento("nombreCompleto").value.trim(),
+            celular: elemento("celular").value.trim(), usuario: elemento("nombreUsuario").value.trim()};
+        if (!Object.values(datos).every(Boolean)) throw new Error("Todos los campos son obligatorios.");
+        cliente = repo.actualizarCliente(cliente.id, datos);
+        usuarioActivo = cliente.usuario;
+        sessionStorage.setItem("usuarioActivo", usuarioActivo);
+        mostrarMensaje("Perfil actualizado correctamente.");
+    } catch (error) { mostrarMensaje(error.message, "error"); }
 });
 
-const formPerfil = document.getElementById("formPerfil");
-const identificacion = document.getElementById("identificacion");
-const nombreCompleto = document.getElementById("nombreCompleto");
-const celular = document.getElementById("celular");
-const nombreUsuario = document.getElementById("nombreUsuario");
-const formContrasenia = document.getElementById("formContrasenia");
-const usuarioContrasenia = document.getElementById("usuarioContrasenia")
-const contraseniaActual = document.getElementById("contraseniaActual");
-const nuevaContrasenia = document.getElementById("nuevaContrasenia");
-const confirmarContrasenia = document.getElementById("confirmarContrasenia");
-
-if (!usuarioActivo || !clienteActual) {
-    window.location.href = "login.html"
-}
-
-if (clienteActual) {
-    const cliente = new Cliente(
-        clienteActual.id,
-        clienteActual.nombre,
-        clienteActual.celular,
-        clienteActual.usuario,
-        clienteActual.clave,
-        clienteActual.intentos,
-        clienteActual.bloqueado
-    )
-
-    identificacion.value = cliente.getNumeroIdentificacion();
-    nombreCompleto.value = cliente.getNombreCompleto();
-    celular.value = cliente.getNumeroCelular();
-    nombreUsuario.value = cliente.getNombreUsuario();
-
-    formPerfil.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const nuevaIdentificacion = identificacion.value.trim();
-        const nuevoNombre = nombreCompleto.value.trim();
-        const nuevoCelular = celular.value.trim();
-        const nuevoUsuario = nombreUsuario.value.trim();
-
-        if(!nuevaIdentificacion || !nuevoNombre || !nuevoCelular || !nuevoUsuario){
-            alert(`Todos los campos son obligatorios.`)
-            return;
-        }
-
-        const identifiacionRepetida = listaUsuarios.find(function(usuario){
-            return usuario.id === nuevaIdentificacion && usuario.usuario !== usuarioActivo;
-        })
-
-        if(identifiacionRepetida){
-            alert(`Esta identificación ya está registrada.`)
-            return;
-        }
-
-        const usuarioRepetido = listaUsuarios.find(function(usuario){
-            return usuario.usuario === nuevoUsuario && usuario.usuario !== usuarioActivo;
-        })
-
-        if(usuarioRepetido){
-            alert(`Este nombre de usuario ya existe dentro del sistema.`)
-            return;
-        }
-        //Esto modifica la instancia del objeto creado
-        cliente.setNumeroIdentificacion(identificacion.value);
-        cliente.setNombreCompleto(nombreCompleto.value);
-        cliente.setNumeroCelular(celular.value);
-        cliente.setNombreUsuario(nombreUsuario.value);
-
-        //Translada los cambios a el objeto que hay dentro del array de usuarios
-        clienteActual.id = cliente.getNumeroIdentificacion();
-        clienteActual.nombre = cliente.getNombreCompleto();
-        clienteActual.celular = cliente.getNumeroCelular();
-        clienteActual.usuario = cliente.getNombreUsuario();
-        //Guardar el nombre de usuario en la session activa en caso de cambiar nombre de usuario
-        sessionStorage.setItem("usuarioActivo", nuevoUsuario)
-
-        //Guardar los datos en localStorage
-        localStorage.setItem("usuarios", JSON.stringify(listaUsuarios))
-        alert(`Perfil actualizado correctamente.`)
-    })
-
-    formContrasenia.addEventListener("submit", function(event){
-        event.preventDefault();
-
-        const usuarioIngresado = usuarioContrasenia.value.trim();
-    const claveActualIngresada = contraseniaActual.value;
-    const nuevaClave = nuevaContrasenia.value;
-    const confirmarClave = confirmarContrasenia.value;
-
-    if (usuarioIngresado !== clienteActual.usuario) {
-        alert("El usuario ingresado no corresponde al usuario de la sesión.");
-        return;
-    }
-
-    if (claveActualIngresada !== clienteActual.clave) {
-        alert("La contraseña actual es incorrecta.");
-        return;
-    }
-
-    if (nuevaClave !== confirmarClave) {
-        alert("La nueva contraseña y su confirmación no coinciden.");
-        return;
-    }
-
-    cliente.setContrasenia(nuevaClave);
-
-    clienteActual.clave = cliente.getContrasenia();
-
-    localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
-
-    alert("Contraseña actualizada correctamente.");
-
-    formContrasenia.reset();
-    })
-}
+/** Cambia la contraseña solo si la actual es correcta. */
+elemento("formContrasenia").addEventListener("submit", event => {
+    event.preventDefault();
+    const actual = elemento("contraseniaActual").value;
+    const nueva = elemento("nuevaContrasenia").value;
+    if (elemento("usuarioContrasenia").value.trim() !== cliente.usuario || actual !== cliente.clave) return mostrarMensaje("Usuario o contraseña actual incorrectos.", "error");
+    if (!nueva || nueva !== elemento("confirmarContrasenia").value) return mostrarMensaje("La nueva contraseña no coincide.", "error");
+    cliente = repo.actualizarCliente(cliente.id, {...cliente, clave: nueva});
+    elemento("formContrasenia").reset();
+    mostrarMensaje("Contraseña actualizada correctamente.");
+});
+cargarPerfil();

@@ -1,146 +1,61 @@
-import TarjetaCredito from "../src/TarjetaCredito.js";
+import "./vencimientosCDT.js";
+import ServicioBancario from "../src/ServicioBancario.js";
+import RepositorioBancario from "../src/RepositorioBancario.js";
+import {mostrarMensaje} from "./mensajes.js";
+const servicio = new ServicioBancario();
+const repositorio = new RepositorioBancario();
+const usuario = sessionStorage.getItem("usuarioActivo");
+if (sessionStorage.getItem("tipoUsuarioActivo") !== "cliente" || !usuario) window.location.href = "login.html";
+const formato = monto => Number(monto).toLocaleString("es-CO", {style: "currency", currency: "COP", maximumFractionDigits: 0});
 
-const formCompra = document.getElementById("formCompra");
-const valorCompra = document.getElementById("valorCompra");
-const numeroCuotas = document.getElementById("numeroCuotas");
-const resultadoCompra = document.getElementById("resultadoCompra");
-const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-const usuarioActivo = sessionStorage.getItem("usuarioActivo")
-const clienteActual = listaUsuarios.find(function (cliente) {
-    return cliente.usuario === usuarioActivo
-})
-
-const historialCompras = document.getElementById("historialCompras");
-
-//Función para implementar el historial de compras al html
-function mostrarHistorial(compras) {
-    historialCompras.innerHTML = "";
-
-    if (compras.length === 0) {
-        historialCompras.textContent = "No tienes compras registradas.";
-        return;
-    }
-
+/** Actualiza el cupo, deuda, titular e historial de compras y pagos. */
+function mostrarTarjeta() {
+    const cliente = repositorio.buscarCliente(usuario);
+    if (!cliente?.tarjetaCredito) return mostrarMensaje("Tarjeta no disponible.", "error");
+    const tarjeta = repositorio.reconstruirTarjeta(cliente.tarjetaCredito);
+    document.getElementById("numeroTarjeta").textContent = tarjeta.getNumeroTarjeta();
+    document.getElementById("nombreUsuarioTarjeta").textContent = cliente.nombre.toUpperCase();
+    document.getElementById("cupoDisponible").textContent = formato(tarjeta.getCupoDisponible());
+    document.getElementById("deudaActual").textContent = formato(tarjeta.getDeudaActual());
+    const historial = document.getElementById("historialCompras");
+    historial.replaceChildren();
+    if (!tarjeta.getCompras().length) { historial.textContent = "No tienes compras registradas."; return; }
     const tabla = document.createElement("table");
-
-    tabla.innerHTML = `
-        <thead>
-            <tr>
-                <th>Capital</th>
-                <th>Cuotas</th>
-                <th>Interés mensual</th>
-                <th>Cuota mensual</th>
-                <th>Deuda total</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    `;
-
-    const cuerpoTabla = tabla.querySelector("tbody");
-
-
-    compras.forEach(function (compra) {
+    const cabecera = document.createElement("thead");
+    cabecera.innerHTML = "<tr><th>Capital</th><th>Cuotas</th><th>Interés mensual</th><th>Cuota mensual</th><th>Deuda total</th></tr>";
+    tabla.append(cabecera);
+    const cuerpo = document.createElement("tbody");
+    tarjeta.getCompras().forEach(c => {
         const fila = document.createElement("tr");
-
-        fila.innerHTML = `
-        <td>${formatearMoneda(compra.capital)}</td>
-        <td>${compra.numeroCuotas}</td>
-        <td>${(compra.tasaInteres * 100).toFixed(1)}%</td>
-        <td>${formatearMoneda(compra.cuotaMensual)}</td>
-        <td>${formatearMoneda(compra.deudaTotal)}</td>
-    `;
-
-        cuerpoTabla.appendChild(fila);
+        [formato(c.capital), String(c.numeroCuotas), `${(c.tasaInteres * 100).toFixed(1)}%`, formato(c.cuotaMensual), formato(c.deudaTotal)].forEach(valor => {
+            const celda = document.createElement("td"); celda.textContent = valor; fila.append(celda);
+        });
+        cuerpo.append(fila);
     });
-
-    historialCompras.appendChild(tabla);
+    tabla.append(cuerpo);
+    historial.append(tabla);
 }
 
-//FUncion solo para formatear las monedas con muchos decimales dentro de la lista de movimientos
-function formatearMoneda(valor) {
-    return valor.toLocaleString("es-CO", {
-        style: "currency",
-        currency: "COP",
-        maximumFractionDigits: 0
-    });
-}
+/** Procesa la compra y muestra la cuota correspondiente. */
+document.getElementById("formCompra").addEventListener("submit", event => {
+    event.preventDefault();
+    try {
+        const compra = servicio.comprar(usuario, Number(document.getElementById("valorCompra").value), Number(document.getElementById("numeroCuotas").value));
+        document.getElementById("resultadoCompra").textContent = `Cuota mensual: ${formato(compra.cuotaMensual)} · Deuda generada: ${formato(compra.deudaTotal)}`;
+        document.getElementById("valorCompra").value = "";
+        mostrarTarjeta();
+        mostrarMensaje("Compra registrada correctamente.");
+    } catch (error) { mostrarMensaje(error.message, "error"); }
+});
 
-
-if (!usuarioActivo || !clienteActual || !clienteActual.tarjetaCredito) {
-    window.location.href = "login.html"
-} else {
-    const tarjetaGuardada = clienteActual.tarjetaCredito;
-
-    const numeroTarjeta = document.getElementById("numeroTarjeta");
-    numeroTarjeta.textContent = tarjetaGuardada.numeroTarjeta
-
-    const nombreUsuarioTarjeta = document.getElementById("nombreUsuarioTarjeta")
-    nombreUsuarioTarjeta.textContent = clienteActual.nombre.toUpperCase()
-
-    const tarjeta = new TarjetaCredito(
-        tarjetaGuardada.numeroTarjeta,
-        tarjetaGuardada.cupoTotal
-    );
-
-    tarjeta.setCupoDisponible(tarjetaGuardada.cupoDisponible);
-    tarjeta.setDeudaActual(tarjetaGuardada.deudaActual);
-    tarjeta.setCompras(tarjetaGuardada.compras || []);
-
-    mostrarHistorial(tarjeta.getCompras());
-
-    const cupoDisponible = document.getElementById("cupoDisponible");
-
-    cupoDisponible.textContent = tarjeta.getCupoDisponible().toLocaleString("es-CO", {
-        style: "currency",
-        currency: "COP",
-        maximumFractionDigits: 0
-    })
-
-    formCompra.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const capital = Number(valorCompra.value);
-        const cuotas = Number(numeroCuotas.value);
-
-        try {
-            const compra = tarjeta.realizarCompra(capital, cuotas);
-
-            // Actualizar los datos de la tarjeta guardada
-            clienteActual.tarjetaCredito.cupoDisponible =
-                tarjeta.getCupoDisponible();
-
-            clienteActual.tarjetaCredito.deudaActual =
-                tarjeta.getDeudaActual();
-
-            clienteActual.tarjetaCredito.compras =
-                tarjeta.getCompras();
-
-            // Guardar los cambios en localStorage
-            localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
-            mostrarHistorial(tarjeta.getCompras());
-            resultadoCompra.textContent =
-                `Compra registrada correctamente.
-    Cuota mensual: ${compra.cuotaMensual.toLocaleString("es-CO", {
-                    style: "currency",
-                    currency: "COP",
-                    maximumFractionDigits: 0
-                })}
-    Deuda total: ${compra.deudaTotal.toLocaleString("es-CO", {
-                    style: "currency",
-                    currency: "COP",
-                    maximumFractionDigits: 0
-                })}`;
-            cupoDisponible.textContent =
-                tarjeta.getCupoDisponible().toLocaleString("es-CO", {
-                    style: "currency",
-                    currency: "COP",
-                    maximumFractionDigits: 0
-                });
-                valorCompra.value = "";
-        } catch (error) {
-            alert(error.message)
-        }
-    })
-}
-
-
+/** Recibe pagos desde ahorros o corriente y actualiza el estado de la tarjeta. */
+document.getElementById("formPagoTarjeta").addEventListener("submit", event => {
+    event.preventDefault();
+    try {
+        const resultado = servicio.pagarTarjeta(usuario, document.getElementById("cuentaPagoTarjeta").value, Number(document.getElementById("montoPagoTarjeta").value));
+        mostrarTarjeta();
+        document.getElementById("montoPagoTarjeta").value = "";
+        mostrarMensaje(`Pago exitoso. Deuda pendiente: ${formato(resultado.deudaActual)}. Cupo disponible: ${formato(resultado.cupoDisponible)}`);
+    } catch (error) { mostrarMensaje(error.message, "error"); }
+});
+mostrarTarjeta();

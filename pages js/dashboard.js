@@ -1,3 +1,4 @@
+import "./vencimientosCDT.js";
 const tipoUsuarioActivo = sessionStorage.getItem("tipoUsuarioActivo");
 const usuarioActivo = sessionStorage.getItem("usuarioActivo");
 

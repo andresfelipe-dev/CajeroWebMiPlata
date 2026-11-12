@@ -1,40 +1,17 @@
-const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-const usuarioActivo = sessionStorage.getItem("usuarioActivo")
-const clienteActual = listaUsuarios.find(function (cliente) {
-    return cliente.usuario === usuarioActivo
-})
-const cuentaSeleccionada = document.getElementById("cuentaSeleccionada")
-const btnConsultarSaldo = document.getElementById("btnConsultarSaldo")
-const cuentaNombre = document.getElementById("cuentaNombre")
-const cuentaNumero = document.getElementById("cuentaNumero")
-const saldoActual = document.getElementById("saldoActual")
-const resultadoSaldo = document.getElementById("resultadoSaldo")
+import "./vencimientosCDT.js";
+import ServicioBancario from "../src/ServicioBancario.js";
+import {mostrarMensaje} from "./mensajes.js";
+const servicio = new ServicioBancario();
+const usuario = sessionStorage.getItem("usuarioActivo");
+if (sessionStorage.getItem("tipoUsuarioActivo") !== "cliente" || !usuario) window.location.href = "login.html";
 
-if(!usuarioActivo || !clienteActual){
-    window.location.href = "login.html"
-}
-
-btnConsultarSaldo.addEventListener('click', function () {
-    const tipoCuenta = cuentaSeleccionada.value
-    const cuentaElegida = clienteActual.cuentas.find(function(cuenta){
-        return cuenta.tipo === tipoCuenta;
-    })
-
-    if (tipoCuenta === "") {
-        resultadoSaldo.hidden = true
-        alert("Por favor, selecciona un tipo de cuenta.")
-        return;
-    }
-    else if (tipoCuenta === "ahorros") {
-        resultadoSaldo.hidden = false;
-        cuentaNombre.textContent = `Cuenta de Ahorros`
-        cuentaNumero.textContent = `Número de cuenta: ${cuentaElegida.numeroCuenta}`
-        saldoActual.textContent = `$ ${Number(cuentaElegida.saldo).toLocaleString("es-CO")}`;
-    }
-    else if(tipoCuenta === "corriente"){
-        resultadoSaldo.hidden = false;
-        cuentaNombre.textContent = "Cuenta Corriente"
-        cuentaNumero.textContent = `Número de cuenta: ${cuentaElegida.numeroCuenta}`
-        saldoActual.textContent = `$ ${Number(cuentaElegida.saldo).toLocaleString("es-CO")}`;
-    }
-})
+/** Consulta el saldo de la cuenta indicada por el cliente. */
+document.getElementById("btnConsultarSaldo").addEventListener("click", () => {
+    try {
+        const cuenta = servicio.consultarSaldo(usuario, document.getElementById("cuentaSeleccionada").value);
+        document.getElementById("resultadoSaldo").hidden = false;
+        document.getElementById("cuentaNombre").textContent = cuenta.tipo === "ahorros" ? "Cuenta de Ahorros" : "Cuenta Corriente";
+        document.getElementById("cuentaNumero").textContent = `Número de cuenta: ${cuenta.numeroCuenta}`;
+        document.getElementById("saldoActual").textContent = `$ ${cuenta.saldo.toLocaleString("es-CO")}`;
+    } catch (error) { mostrarMensaje(error.message, "error"); }
+});
