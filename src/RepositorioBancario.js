@@ -2,6 +2,7 @@ import Cliente from "./Cliente.js";
 import CuentaAhorros from "./CuentaAhorros.js";
 import CuentaCorriente from "./CuentaCorriente.js";
 import TarjetaCredito from "./TarjetaCredito.js";
+import CDT from "./CDT.js";
 
 /** Centraliza la lectura y escritura de usuarios y productos en localStorage. */
 export default class RepositorioBancario {
@@ -43,6 +44,15 @@ export default class RepositorioBancario {
         return new TarjetaCredito(datos.numeroTarjeta, Number(datos.cupoTotal), datos);
     }
 
+    /** Reconstruye un CDT guardado para recuperar sus métodos y fecha de vencimiento. */
+    reconstruirCDT(datos) {
+        if (!datos) throw new Error("No se encontraron los datos del CDT.");
+        return new CDT(
+            datos.id, datos.numeroCuentaOrigen, datos.capital, datos.plazoSegundos,
+            datos.fechaApertura, datos.estado ?? "activo", datos.fechaLiquidacion ?? null
+        );
+    }
+
     /** Crea un registro bancario completo para un cliente nuevo. */
     crearCliente(datos) {
         const lista = this.listarClientes();
@@ -66,7 +76,7 @@ export default class RepositorioBancario {
         const registro = {id: cliente.getNumeroIdentificacion(), nombre: cliente.getNombreCompleto(),
             celular: cliente.getNumeroCelular(), usuario: cliente.getNombreUsuario(),
             clave: cliente.getContrasenia(), intentos: cliente.getIntentosRestantes(),
-            bloqueado: cliente.getBloqueadoHasta(), cuentas: [ahorros.toJSON(), corriente.toJSON()], tarjetaCredito: tarjeta.toJSON()};
+            bloqueado: cliente.getBloqueadoHasta(), cuentas: [ahorros.toJSON(), corriente.toJSON()], tarjetaCredito: tarjeta.toJSON(), cdts: []};
         lista.push(registro);
         this.guardarClientes(lista);
         return registro;

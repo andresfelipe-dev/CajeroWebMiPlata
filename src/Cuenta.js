@@ -42,6 +42,17 @@ export default class Cuenta extends ProductoFinanciero {
         return this.#saldo;
     }
 
+    /** Invierte solo el saldo real; no aplica intereses ni permite sobregiro. */
+    debitarParaCDT(monto, detalles = {}) {
+        Cuenta.validarMonto(monto, 50000);
+        if (this.#saldo < monto) {
+            throw new Error("Saldo real insuficiente para abrir el CDT. No se permite sobregiro.");
+        }
+        this.#saldo -= monto;
+        this.registrarMovimientos("Apertura de CDT", monto, detalles);
+        return this.#saldo;
+    }
+
     /** Cambia el saldo internamente; las pantallas no deben alterarlo. */
     _actualizarSaldo(nuevoSaldo) { this.#saldo = nuevoSaldo; }
 
